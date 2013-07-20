@@ -49,8 +49,9 @@ public class MainActivity extends PreferenceActivity {
     private static final int MENU_ADD = 0;
     private static final int MENU_ACTION = 1;
     private static final int MENU_EXTENSIONS = 2;
+    private static final int MENU_HELP = 3;
 
-    public static final String PREFS_NAME = "YouDisgustMe";
+    private static final String PREFS_NAME = "YouDisgustMe";
     
     private CheckBox dontShowAgain;
     private NotificationManager mNotificationManager;
@@ -129,7 +130,9 @@ public class MainActivity extends PreferenceActivity {
             .setIcon(R.drawable.ic_start)
             .setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS | MenuItem.SHOW_AS_ACTION_WITH_TEXT);
         menu.add(Menu.NONE, MENU_EXTENSIONS, 0, R.string.extensions)
-        	.setShowAsAction(MenuItem.SHOW_AS_ACTION_NEVER | MenuItem.SHOW_AS_ACTION_WITH_TEXT);
+            .setShowAsAction(MenuItem.SHOW_AS_ACTION_NEVER | MenuItem.SHOW_AS_ACTION_WITH_TEXT);
+        menu.add(Menu.NONE, MENU_HELP, 0, R.string.help_dialog)
+            .setShowAsAction(MenuItem.SHOW_AS_ACTION_NEVER | MenuItem.SHOW_AS_ACTION_WITH_TEXT);
         return true;
     }
 
@@ -227,8 +230,12 @@ public class MainActivity extends PreferenceActivity {
                 invalidateOptionsMenu();
                 break;
             case MENU_EXTENSIONS:
-            	Intent intent = new Intent(this, ExtensionsActivity.class);
-    	        this.startActivity(intent);
+            	Intent intentE = new Intent(this, ExtensionsActivity.class);
+    	        this.startActivity(intentE);
+                break;
+            case MENU_HELP:
+                Intent intentH = new Intent(this, HelperActivity.class);
+                this.startActivity(intentH);
                 break;
         }
         return super.onOptionsItemSelected(item);
