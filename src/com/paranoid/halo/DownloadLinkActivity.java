@@ -15,8 +15,7 @@ public class DownloadLinkActivity extends PreferenceActivity {
     Preference Carbon;
     Preference RootBox;
     Preference uXylon;
-    Preference SaberMod;
-    Preference PacMan;
+    Preference Mirage;
 
     @SuppressWarnings("deprecation")
     @Override
@@ -28,8 +27,7 @@ public class DownloadLinkActivity extends PreferenceActivity {
         Carbon = findPreference("carbon");
         RootBox = findPreference("rootbox");
         uXylon = findPreference("uxylon");
-        SaberMod = findPreference("sabermod");
-        PacMan = findPreference("pacman");
+        Mirage = findPreference("mirage");
 
     }
 
@@ -43,10 +41,8 @@ public class DownloadLinkActivity extends PreferenceActivity {
             launchUrl("http://get.rootbox.ca/");
         } else if (preference == uXylon) {
             launchUrl("http://ultimatumdev.org/downloads/");
-        } else if (preference == SaberMod) {
-            launchUrl("http://goo.gl/3ADKw");
-        } else if (preference == PacMan) {
-            launchUrl("http://pacman.basketbuild.com/index.php?dir=main/");
+        } else if (preference == Mirage) {
+            launchUrl("http://d-h.st/users/franco/?fld_id=16158#files");
         }
         return super.onPreferenceTreeClick(preferenceScreen, preference);
     }

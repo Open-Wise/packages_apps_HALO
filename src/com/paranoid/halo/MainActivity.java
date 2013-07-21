@@ -314,36 +314,38 @@ public class MainActivity extends PreferenceActivity {
             //Try to check if this rom is supported
             String hasCr = Utils.getProp("ro.carbon");
             String hasPa = Utils.getProp("ro.pa");
-            String hasSm = Utils.getProp("ro.sm");
+            String hasMg = Utils.getProp("ro.mirage");
             String hasRb = Utils.getProp("ro.rootbox");
-            String hasPac = Utils.getProp("ro.pac");
             String hasXy = Utils.getProp("ro.ukg");
 
-            AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
-            LayoutInflater inflater = LayoutInflater.from(MainActivity.this);
-            View eulaLayout = inflater.inflate(R.layout.alert_dialog, null);
-            dontShowAgain = (CheckBox) eulaLayout.findViewById(R.id.skip);
-            
+            if (hasCr.equals("true") | hasPa.equals("true") | hasMg.equals("true")
+                | hasRb.equals("true") | hasXy.equals("true")) {
+                // You're clever dude! No advice must be shown!
+            } else {
+                AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
+                LayoutInflater inflater = LayoutInflater.from(MainActivity.this);
+                View eulaLayout = inflater.inflate(R.layout.alert_dialog, null);
+                dontShowAgain = (CheckBox) eulaLayout.findViewById(R.id.skip);
 
-            builder.setMessage(R.string.nots_content)
-                 .setView(eulaLayout)
-                 .setTitle(R.string.nots_title)
-                 .setPositiveButton(R.string.nots_download,
-                    new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog, int id) {
-                           String checkBoxResult = "NOT checked";
-                           if (dontShowAgain.isChecked())
-                                checkBoxResult = "checked";
-                            SharedPreferences settings = getSharedPreferences(PREFS_NAME, 0);
-                            SharedPreferences.Editor editor = settings.edit();
-                            editor.putString("skipMessage", checkBoxResult);
-                            // Commit the edits!
-                            editor.commit();
-                            Intent intent = new Intent(MainActivity.this,
-                                    DownloadLinkActivity.class);
-                            MainActivity.this.startActivity(intent);
-                        }
-                    })   
+                builder.setMessage(R.string.nots_content)
+                    .setView(eulaLayout)
+                    .setTitle(R.string.nots_title)
+                    .setPositiveButton(R.string.nots_download,
+                       new DialogInterface.OnClickListener() {
+                           public void onClick(DialogInterface dialog, int id) {
+                              String checkBoxResult = "NOT checked";
+                              if (dontShowAgain.isChecked())
+                                  checkBoxResult = "checked";
+                                  SharedPreferences settings = getSharedPreferences(PREFS_NAME, 0);
+                                  SharedPreferences.Editor editor = settings.edit();
+                                  editor.putString("skipMessage", checkBoxResult);
+                                  // Commit the edits!
+                                  editor.commit();
+                                  Intent intent = new Intent(MainActivity.this,
+                                          DownloadLinkActivity.class);
+                                  MainActivity.this.startActivity(intent);
+                          }
+            })   
                     .setNegativeButton(R.string.nots_ok,
                        new DialogInterface.OnClickListener() {
                            public void onClick(DialogInterface dialog, int id) {
@@ -364,6 +366,7 @@ public class MainActivity extends PreferenceActivity {
             String skipMessage = settings.getString("skipMessage", "NOT checked");
             if (!skipMessage.equals("checked")) {
                 nots_dialog.show();
+            }
             }
         }
     }

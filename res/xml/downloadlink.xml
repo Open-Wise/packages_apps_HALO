@@ -25,14 +25,9 @@
             android:icon="@drawable/uxylon" />
 
         <Preference
-            android:key="sabermod"
-            android:title="@string/saber_mod"
-            android:icon="@drawable/saber_mod" />
-
-        <Preference
-            android:key="pacman"
-            android:title="@string/pac_man"
-            android:icon="@drawable/pac_man" />
+            android:key="mirage"
+            android:title="@string/mirage"
+            android:icon="@drawable/mirage" />
         
     </PreferenceCategory>
     
